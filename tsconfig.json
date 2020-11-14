@@ -19,13 +19,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "types": ["@emotion/react"],
-    "paths": {
-      "@components/*" : ["components/*"]
-    }
+    "types": [
+      "@emotion/react"
+    ]
   },
   "include": [
     "src"
-  ],
-  
+  ]
 }
