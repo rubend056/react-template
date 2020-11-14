@@ -1,16 +1,19 @@
-import * as presets from '@theme-ui/presets'
-import { Theme } from 'theme-ui'
+import { Theme } from "@emotion/react";
+import Color from "color";
 
-const main:Theme = {
-  ...presets.base,
-  colors: {
-    ...presets.base.colors,
-    text: '#111',
-    background: '#fff',
-  },
-}
+const primary = Color('#3434eb')
 
-export default {
-	...presets,
-	main
-}
+const themes:Theme[] = [
+  {
+    colors: {
+      primary: primary.hex(),
+      primary_dark: primary.darken(.3).hex(),
+      primary_light: primary.lighten(.3).hex(),
+      accent: '#965',
+      text: '#111',
+      background: '#000',
+    }
+  }
+]
+
+export default themes;

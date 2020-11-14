@@ -1,11 +1,19 @@
-// types.d.ts
-declare module '@theme-ui/presets' {
-  import { Theme } from 'theme-ui'
+// declare module "react" {
+//   export interface Attributes {
+//       css?: any;
+//   }
+// }
 
-  const presets: {
-		base: Theme,
-		funk: Theme
+export module '@emotion/react' {
+	export interface Theme {
+		colors:{
+			primary: string;
+			accent: string;
+			primary_dark:string;
+			primary_light:string;
+			text:string;
+			background:string;
+		}
+		
 	}
-
-  export = presets
 }

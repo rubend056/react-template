@@ -18,9 +18,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["@emotion/react"],
+    "paths": {
+      "@components/*" : ["components/*"]
+    }
   },
   "include": [
     "src"
-  ]
+  ],
+  
 }
