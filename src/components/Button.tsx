@@ -1,39 +1,77 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import Color from "color";
-
+import { css, useTheme, Theme } from '@emotion/react'
 import StyledComponent from '../styles/StyledComponent';
+import { palette, useS } from '../themes'
 
-// interface ButtonProps{
-// 	icon:string,
-// 	icon_position:'left'|'right'
-// }
-const test = css`border-radius:5px;`
-
-export default styled(
-	class Button extends React.Component<StyledComponent>{
-		render() {
-			return <button className={this.props.className}> {this.props.children}</button>
-		}
+export type ButtonProps =
+	StyledComponent & {
+		width?: number
 	}
-)`
 
-${test};
-color: ${props => props.theme.colors.primary};
-padding: 10px;
-background: ${props => props.theme.colors.primary_dark};
 
-cursor: pointer;
-/* display: inline-block; */
-&:hover{
-	color : ${props => props.theme.colors.accent};
-	background: ${props => Color(props.theme.colors.primary_dark).darken(.1).hex()};
+// ? ############## BUTTON #################
+class Button extends React.Component<ButtonProps>{
+	render() {
+		return (
+			<button
+				css={(t: Theme) => useS(t, this, (p) => ({
+					background: p.cd,
+					color: p.cd_t,
+					transition: `all ${t.animations_length}s`,
+					borderRadius: t.space[1],
+					padding: t.space[2],
+					'&:hover': {
+						background: p.cl,
+						color: p.cl_t,
+					}
+				}))}
+				{...this.props}
+			>
+				{this.props.children}
+			</button>
+		)
+	}
+};
+
+// ? ############## TOGGLE BUTTON #################
+
+class ButtonToggle extends React.Component<ButtonProps>{
+	render() {
+		return (
+			<div
+				className="switch"
+				css={(t: Theme) => useS(t, this, (p) => ({
+					// background: p.cd,
+					// color: p.cd_t,
+					
+					height: 30,
+					width: 60,
+					
+					'&:hover': {
+						// background: p.cl,
+						// color: p.cl_t,
+					},
+					'&.slider:before':{
+						transition: `${t.animations_length}s`,
+					},
+					'&input:checked + .slider)':{
+						backgroundColor: p.c,
+					},
+					'&input:focus + .slider': {
+						boxShadow: `0 0 1px ${p.c}`,
+					},
+				}))}
+			>
+				<input type="checkbox" />
+				<span className="slider"></span>
+				{this.props.children}
+			</div>
+		)
+	}
 }
-&:active{
-	background: ${props => Color(props.theme.colors.primary_dark).darken(.3).hex()};
-}
-`
+// const StyledButtonToggle = styled(ButtonToggle)`
+// 	${buttonStyle};
+// `
 
-// export default Button;
+export { Button, ButtonToggle }

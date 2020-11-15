@@ -7,14 +7,16 @@ import NotFound from './components/NotFound';
 
 import themes from './themes';
 import { Global, ThemeProvider, useTheme } from '@emotion/react';
-import Button from './components/Button';
+import {Button} from './components/Button';
+import ComponentsTest from './components/ComponentsTest';
+
 
 const GlobalStyles = () => {
   const theme = useTheme()
   return (
     <Global styles={{
       '#root': {
-        background: theme.colors.background
+        background: theme.background
       }
     }} />
   )
@@ -28,7 +30,7 @@ function App() {
 
       <Router>
         <Toolbar />
-        <Button >Click Me</Button>
+        <ComponentsTest />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route component={NotFound} />

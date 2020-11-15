@@ -1,6 +1,7 @@
+import { Theme } from "@emotion/react";
 
 interface StyledComponent{
-	className?:string
+	palette?:string,
 }
 
 export default StyledComponent
